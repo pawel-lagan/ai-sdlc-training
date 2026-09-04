@@ -1,0 +1,7 @@
+2026-09-02T10:18:03Z INFO target=parser_tests configuration=Debug platform=x64
+2026-09-02T10:18:04Z INFO test=rejects_truncated_record status=started
+2026-09-02T10:18:04Z ERROR AddressSanitizer: heap-buffer-overflow READ of size 1
+2026-09-02T10:18:04Z ERROR frame=#0 function=RecordParser::readLength source=src/record_parser.cpp:47
+2026-09-02T10:18:04Z ERROR allocation=tests/record_parser_test.cpp:81 size=4 read-offset=4
+2026-09-02T10:18:04Z ERROR test=rejects_truncated_record status=failed exit-code=1
+2026-09-02T10:18:04Z INFO artifact-produced=false
