@@ -228,6 +228,18 @@
       <aside class="notes">Use DELIVERY-GUIDE.md as the timing authority. Protect the skill lab, the five demos, and the final 60-minute implementation slice.</aside>
     </section>
 
+    <section class="slide slide-light" data-section="Ground rules">
+      <div class="brand-lockup"><b>TT</b> PSC</div>
+      <h2 class="brand-heading"><span class="prefix">_</span>Workshop ground rules</h2>
+      <div class="grid-3">
+        <div class="card-light" style="border-top:5px solid var(--pink);"><div class="stat">01</div><h3>Questions are welcome at any time</h3><p>Ask during the explanation, demonstration, or exercise. We can clarify a concept when it becomes relevant.</p></div>
+        <div class="card-light" style="border-top:5px solid var(--green);"><div class="stat">02</div><h3>There are no bad questions</h3><p>Questions reveal assumptions and help the whole group build a shared understanding.</p></div>
+        <div class="card-light" style="border-top:5px solid var(--purple);"><div class="stat">03</div><h3>LLM results may differ</h3><p>LLMs are non-deterministic. The same prompt can produce different wording, decisions, or implementation details.</p></div>
+      </div>
+      <div class="callout"><b>Workshop practice:</b> compare the reasoning, constraints, and evidence instead of expecting identical output.</div>
+      <aside class="notes">Invite questions throughout the workshop. When two teams receive different LLM outputs, use the difference as material for comparing assumptions, decisions, and evidence.</aside>
+    </section>
+
     <section class="slide slide-purple" data-section="Foundations">
       <div class="brand-lockup"><b>TT</b> PSC</div><div class="section-number">01</div>
       <div class="eyebrow">Foundations</div>
@@ -799,7 +811,7 @@ Write that into evidence.”</div>
 
   <nav class="slide-nav" aria-label="Slide navigation">
     <button class="nav-btn" id="prev" aria-label="Previous slide">&#8592;</button>
-    <span class="slide-counter"><span id="current">1</span> / <span id="total">44</span></span>
+    <span class="slide-counter"><span id="current">1</span> / <span id="total">45</span></span>
     <div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
     <button class="nav-btn" id="next" aria-label="Next slide">&#8594;</button>
   </nav>
@@ -808,7 +820,7 @@ Write that into evidence.”</div>
 <script>
   const normalizeTitle = slide => (slide.querySelector('h1,h2')?.textContent || '').replace(/^_/, '').trim();
   const requestedOrder = [
-    'AI-Native SDLC','What participants will build','Two-day delivery agenda',
+    'AI-Native SDLC','What participants will build','Two-day delivery agenda','Workshop ground rules',
     'Choose the right mechanism','The agent system, layer by layer','Six distinctions that prevent drift','Exercise: mechanism sorter',
     'Same intent, different surfaces','Directory translation card','A portable repository pattern',
     'Package decisions, not documentation','Anatomy of a high-value skill','Parallel lab: three stacks, one contract',
