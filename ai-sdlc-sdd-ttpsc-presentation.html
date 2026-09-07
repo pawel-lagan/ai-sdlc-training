@@ -53,6 +53,12 @@
     .slide-purple .brand-heading .prefix,.slide-gradient .brand-heading .prefix,.slide-dark .brand-heading .prefix { color:var(--heather); }
     .title { font-size:clamp(1.7rem,5vw,3.2rem); max-width:840px; margin-bottom:18px; }
     .subtitle { font-size:clamp(.75rem,1.9vw,1.1rem); line-height:1.55; max-width:760px; opacity:.9; }
+    .repo-link {
+      display:inline-flex; align-self:flex-start; margin-top:20px; padding-bottom:3px;
+      color:#fff; font-size:clamp(.62rem,1.25vw,.78rem); font-weight:700;
+      text-decoration:none; border-bottom:1px solid rgba(255,255,255,.62);
+    }
+    .repo-link:hover,.repo-link:focus { color:var(--heather); border-bottom-color:var(--heather); }
     .eyebrow {
       display:inline-flex; align-self:flex-start; padding:6px 13px; border-radius:24px;
       font-size:.61rem; text-transform:uppercase; letter-spacing:.12em; font-weight:700;
@@ -192,8 +198,9 @@
       <div class="eyebrow">Hands-on engineering workshop</div>
       <h1 class="brand-heading title"><span class="prefix">_</span>AI-Native SDLC</h1>
       <p class="subtitle">Specification-Driven Development, reusable toolchain skills, and a governed delivery agent — across GCC/Linux, MSVC/Visual Studio, and Go.</p>
+      <a class="repo-link" href="https://github.com/pawel-lagan/ai-sdlc-training" target="_blank" rel="noopener noreferrer">github.com/pawel-lagan/ai-sdlc-training</a>
       <div class="footer-pill"><span class="badge badge-heather">2 days</span><span>Day 1: 10:00–15:30 · Day 2: 09:00–10:30</span></div>
-      <aside class="notes">Open with the outcome: one governed delivery flow, three toolchain skills. Ask participants which agent tooling they already use and what “agent” means in their team.</aside>
+      <aside class="notes">Open with the outcome: one governed delivery flow, three toolchain skills. Point participants to the workshop repository at https://github.com/pawel-lagan/ai-sdlc-training, then ask which agent tooling they already use and what “agent” means in their team.</aside>
     </section>
 
     <section class="slide slide-light" data-section="Opening">
@@ -266,14 +273,14 @@
       <div class="brand-lockup"><b>TT</b> PSC</div>
       <h2 class="brand-heading"><span class="prefix">_</span>Six distinctions that prevent drift</h2>
       <div class="grid-2">
-        <div class="card-light"><h3>Skill ≠ agent</h3><p>A skill packages know-how. An agent owns a bounded task in an execution loop.</p></div>
-        <div class="card-light"><h3>Instruction ≠ enforcement</h3><p>Prose guides. Sandboxes, hooks, CI, and permissions can block.</p></div>
-        <div class="card-light"><h3>Tool ≠ workflow</h3><p>A compiler can act. A skill decides when, how, and what the result proves.</p></div>
-        <div class="card-light"><h3>Prompt ≠ specification</h3><p>A prompt starts a conversation. A spec is versioned, testable, and reviewable.</p></div>
-        <div class="card-light"><h3>Plan ≠ approval</h3><p>A plausible implementation path does not authorize product edits or release.</p></div>
-        <div class="card-light"><h3>Command output ≠ evidence</h3><p>Evidence adds environment, criterion mapping, result, and residual risk.</p></div>
+        <div class="card-light"><h3>Skill ≠ agent</h3><p>A skill supplies conditional know-how. An agent owns the task and runs its execution loop.</p></div>
+        <div class="card-light"><h3>Instruction ≠ enforcement</h3><p>An instruction guides behavior. A deterministic control can block a prohibited action.</p></div>
+        <div class="card-light"><h3>Tool ≠ workflow</h3><p>A tool performs one callable action. A workflow defines when and how actions run in sequence.</p></div>
+        <div class="card-light"><h3>Prompt ≠ specification</h3><p>A prompt starts a conversation. A specification defines a versioned, testable, and reviewable change contract.</p></div>
+        <div class="card-light"><h3>Plan ≠ approval</h3><p>A plan proposes an implementation path. An authorized person approves the product change.</p></div>
+        <div class="card-light"><h3>Command output ≠ evidence</h3><p>Command output is a raw observation. Evidence links it to the environment, criterion, status, and residual risk.</p></div>
       </div>
-      <aside class="notes">Invite one example from each team where these were confused in a real workflow.</aside>
+      <aside class="notes">Read the left column from top to bottom, then the right column. Use the matching questions from PRESENTATION-STORYTELLING.md and invite one repository example for each distinction.</aside>
     </section>
 
     <section class="slide slide-heather" data-section="Exercise">
@@ -378,23 +385,24 @@
       <h2 class="brand-heading"><span class="prefix">_</span>A portable repository pattern</h2>
       <div class="grid-2">
         <div class="tree"><span class="green">repo/</span>
-├── <span class="accent">AGENTS.md</span>                 shared guidance
-├── CLAUDE.md                imports AGENTS.md
-├── <span class="accent">.agents/skills/</span>           shared skills
+├── <span class="accent">AGENTS.md</span>                 shared project guidance
+├── CLAUDE.md                imports shared guidance
+├── <span class="accent">.agents/skills/</span>           portable project skills
 │   ├── gcc-dev/SKILL.md
 │   ├── mscpp-dev/SKILL.md
 │   └── go-dev/SKILL.md
-├── .codex/agents/           Codex adapter
-├── .cursor/agents/          Cursor adapter
-└── <span class="accent">specs/changes/</span>            durable contract</div>
+├── <span class="accent">specs/changes/</span>            reviewed change contracts
+├── .codex/agents/           Codex-specific adapter
+├── .cursor/agents/          Cursor-specific adapter
+└── opencode.json            OpenCode-specific config</div>
         <div>
-          <div class="check"><i>✓</i><span><b>Canonical:</b> specs, shared guidance, skill content.</span></div>
-          <div class="check"><i>✓</i><span><b>Adapters:</b> product-specific agent manifests and controls.</span></div>
-          <div class="check"><i>✓</i><span><b>Cloud-safe:</b> commit what a clean environment must discover.</span></div>
-          <div class="check"><i>✓</i><span><b>No divergence:</b> generate or synchronize compatibility copies.</span></div>
+          <div class="check"><i>1</i><span><b>Share the durable core</b><br>Keep guidance, skills, and specifications in Git so every checkout starts with the same intent.</span></div>
+          <div class="check"><i>2</i><span><b>Scope context by location</b><br>Use root artifacts for the whole repository and nested artifacts for a module, reducing irrelevant context.</span></div>
+          <div class="check"><i>3</i><span><b>Adapt only at tool boundaries</b><br>Keep native files small and limited to product-specific syntax, permissions, and routing.</span></div>
+          <div class="check"><i>4</i><span><b>Verify discovery in a clean session</b><br>Confirm that each tool loads the intended instructions and exactly the relevant skills.</span></div>
         </div>
       </div>
-      <aside class="notes">Explain why this pack uses .agents/skills: Codex, OpenCode, and Cursor discover it. Claude needs its native .claude/skills adapter.</aside>
+      <aside class="notes">Present the four goals before discussing file names. Codex, OpenCode, and Cursor discover project skills from .agents/skills. Claude Code can import AGENTS.md from CLAUDE.md, while Claude-specific skills may still use .claude/skills. Sources: https://learn.chatgpt.com/docs/build-skills, https://code.claude.com/docs/en/memory, https://opencode.ai/docs/skills, https://prod.cursor.com/docs/skills</aside>
     </section>
 
     <section class="slide slide-gradient" data-section="Specification-driven development">
@@ -468,95 +476,43 @@
     <section class="slide slide-light" data-section="Skills">
       <div class="brand-lockup"><b>TT</b> PSC</div>
       <h2 class="brand-heading"><span class="prefix">_</span>Anatomy of a high-value skill</h2>
-      <div class="grid-2">
-        <div class="tree"><span class="green">skill-name/</span>
-├── <span class="accent">SKILL.md</span>
-│   ├── name + description
-│   ├── core workflow
-│   └── non-obvious invariants
-├── <span class="accent">references/</span>
-│   └── conditional command cards
-├── scripts/
-│   └── deterministic helpers
-├── assets/
-└── agents/openai.yaml</div>
-        <div>
-          <div class="check"><i>1</i><span><b>Trigger:</b> precise description and exclusions.</span></div>
-          <div class="check"><i>2</i><span><b>Core:</b> stable decisions that apply across repositories.</span></div>
-          <div class="check"><i>3</i><span><b>Conditional detail:</b> loaded only when needed.</span></div>
-          <div class="check"><i>4</i><span><b>Evidence:</b> exact reporting expectations.</span></div>
-          <div class="check"><i>5</i><span><b>Tests:</b> selection, non-selection, and failure paths.</span></div>
-        </div>
+      <div class="grid-3">
+        <div class="card-light"><h3>1. Clear purpose</h3><p>One focused task with a specific outcome.</p></div>
+        <div class="card-light"><h3>2. Context injection</h3><p>Domain and project knowledge the model lacks.</p></div>
+        <div class="card-light"><h3>3. Structured output</h3><p>A consistent format people and tools can use.</p></div>
+        <div class="card-light"><h3>4. Tool integration</h3><p>When and how the skill should use tools.</p></div>
+        <div class="card-light"><h3>5. Guardrails</h3><p>Scope, safety, and quality boundaries.</p></div>
+        <div class="card-light"><h3>6. Composability</h3><p>Clear triggers, deferrals, and conflict rules.</p></div>
       </div>
-      <aside class="notes">A command catalog alone is not a skill. The value is knowing what to inspect, what to preserve, and what a result proves.</aside>
+      <div class="callout">Not every skill needs all six blocks. Each omission should be deliberate.</div>
+      <aside class="notes">Use this as a design checklist, not a mandatory template. Source: https://aiskill.market/blog/anatomy-of-effective-skill</aside>
     </section>
 
     <section class="slide slide-heather" data-section="Parallel labs">
       <div class="brand-lockup"><b>TT</b> PSC</div>
       <h2 class="brand-heading"><span class="prefix">_</span>Parallel lab: three stacks, one contract</h2>
       <div class="grid-3">
-        <div class="card-light"><span class="badge badge-pink">Team A</span><h3 style="margin-top:10px;">gcc-dev</h3><p>Driver selection, build system discovery, warnings, ABI, sanitizers, GDB, Valgrind.</p><div class="mini">Linux · C/C++ · GCC</div></div>
-        <div class="card-light"><span class="badge badge-pink">Team B</span><h3 style="margin-top:10px;">mscpp-dev</h3><p>Developer shell, MSBuild/CMake authority, platform, runtime library, toolset, SDK, ABI.</p><div class="mini">Windows · C++ · MSVC</div></div>
-        <div class="card-light"><span class="badge badge-pink">Team C</span><h3 style="margin-top:10px;">go-dev</h3><p>Modules, generated code, tidy discipline, cancellation, race, vet, focused tests.</p><div class="mini">Go modules · standard tooling</div></div>
+        <div class="card-light"><span class="badge badge-pink">Team A</span><h3 style="margin-top:10px;">gcc-dev</h3><p><b>Use for:</b> C or C++ with GCC on Linux.<br><b>Provide:</b> build entry point, language standard, warning policy, test and diagnostic commands.</p></div>
+        <div class="card-light"><span class="badge badge-pink">Team B</span><h3 style="margin-top:10px;">mscpp-dev</h3><p><b>Use for:</b> native C++ with MSVC on Windows.<br><b>Provide:</b> developer shell, solution or CMake entry point, configuration, platform, SDK and test commands.</p></div>
+        <div class="card-light"><span class="badge badge-pink">Team C</span><h3 style="margin-top:10px;">go-dev</h3><p><b>Use for:</b> Go modules and workspaces.<br><b>Provide:</b> module authority, build tags, generated-file policy, test, vet and race-check expectations.</p></div>
       </div>
-      <div class="callout"><b>Shared acceptance:</b> narrow trigger, real exclusions, preserved repository conventions, reproducible evidence.</div>
-      <aside class="notes">Teams work for 80 minutes. Ask them to start with the skill contract before editing SKILL.md.</aside>
-    </section>
-
-    <section class="slide slide-dark" data-section="gcc-dev">
-      <div class="brand-lockup"><b>TT</b> PSC</div>
-      <h2 class="brand-heading"><span class="prefix">_</span>Team A — gcc-dev decision points</h2>
-      <div class="grid-3">
-        <div class="card"><h3>Discover</h3><p>C or C++? Make, CMake, Ninja? Compiler version? Build type? Test runner?</p></div>
-        <div class="card"><h3>Preserve</h3><p>Language standard, ABI/API, architecture, existing warnings, separate build trees.</p></div>
-        <div class="card"><h3>Verify</h3><p>Focused test, broader suite, ASan/UBSan, optional Valgrind/GDB, exact omissions.</p></div>
-      </div>
-      <div class="prompt" style="margin-top:18px;">Use gcc-dev. Diagnose the first actionable GCC error.
-Do not change the C++ standard or add warning suppressions.
-Report the exact build and validation commands.</div>
-      <aside class="notes">Non-selection test: a Go REST endpoint prompt must not activate gcc-dev.</aside>
-    </section>
-
-    <section class="slide slide-dark" data-section="mscpp-dev">
-      <div class="brand-lockup"><b>TT</b> PSC</div>
-      <h2 class="brand-heading"><span class="prefix">_</span>Team B — mscpp-dev decision points</h2>
-      <div class="grid-3">
-        <div class="card"><h3>Discover</h3><p>Developer PowerShell? Solution or generated project? Toolset, SDK, config, platform?</p></div>
-        <div class="card"><h3>Preserve</h3><p>Debug|x64, /MD-family consistency, ABI, calling convention, character set.</p></div>
-        <div class="card"><h3>Verify</h3><p>Focused project/test, documented suite, supported diagnostics, environment disclosure.</p></div>
-      </div>
-      <div class="prompt" style="margin-top:18px;">Use mscpp-dev. Build only WidgetTests from Product.sln
-for Debug|x64, run focused tests, and report the MSVC
-environment and every command.</div>
-      <aside class="notes">Watch for mechanical GCC-to-MSVC flag translation and fixed personal Visual Studio paths.</aside>
-    </section>
-
-    <section class="slide slide-dark" data-section="go-dev">
-      <div class="brand-lockup"><b>TT</b> PSC</div>
-      <h2 class="brand-heading"><span class="prefix">_</span>Team C — go-dev decision points</h2>
-      <div class="grid-3">
-        <div class="card"><h3>Discover</h3><p>go.mod/go.work, Go version, packages, build tags, task runner, CI?</p></div>
-        <div class="card"><h3>Preserve</h3><p>Cancellation, timeout, error wrapping, goroutine ownership, generated-code policy.</p></div>
-        <div class="card"><h3>Verify</h3><p>Focused test, go test ./..., vet, race when supported, dependency diff.</p></div>
-      </div>
-      <div class="prompt" style="margin-top:18px;">Use go-dev. Fix the goroutine leak in TestShutdown.
-Preserve cancellation semantics, run the focused test first,
-and disclose every check the environment cannot run.</div>
-      <aside class="notes">The skill must not run go mod tidy as generic cleanup. It should justify it and inspect the diff.</aside>
+      <div class="callout"><b>Scaffolding tip:</b> most agent tools provide a <code>create-skill</code> or <code>skill-creator</code> skill. Use it to create the initial structure, then review triggers, boundaries, and checks.</div>
+      <aside class="notes">Teams work for 80 minutes. First write a short brief with the trigger, required repository facts, invariants, verification commands, and evidence format. Then use the tool's create-skill or skill-creator helper to scaffold SKILL.md.</aside>
     </section>
 
     <section class="slide slide-light" data-section="Skill validation">
       <div class="brand-lockup"><b>TT</b> PSC</div>
-      <h2 class="brand-heading"><span class="prefix">_</span>Test the skill where it can fail</h2>
+      <h2 class="brand-heading"><span class="prefix">_</span>A repeatable evaluation loop for skills</h2>
+      <div class="callout" style="margin-top:0;"><b>Evaluation record:</b> prompt, captured trace and artifacts, focused checks, comparable score.</div>
       <div class="grid-3">
-        <div class="card-light"><h3>Missing tool</h3><p>Does it stop with a reproducible blocker?</p></div>
-        <div class="card-light"><h3>Ambiguous build</h3><p>Does it inspect before choosing?</p></div>
-        <div class="card-light"><h3>Wrong stack</h3><p>Does implicit discovery avoid it?</p></div>
-        <div class="card-light"><h3>Generated file</h3><p>Does it identify the owner and generator?</p></div>
-        <div class="card-light"><h3>Skipped tests</h3><p>Does it say “Not run” instead of “Pass”?</p></div>
-        <div class="card-light"><h3>Baseline failure</h3><p>Does it separate pre-existing failure from regression?</p></div>
+        <div class="card-light"><h3>1. Define success</h3><p>Choose a small set of outcome, process, style, and efficiency checks.</p></div>
+        <div class="card-light"><h3>2. Draft the minimum</h3><p>Write a precise name, trigger description, instructions, and definition of done.</p></div>
+        <div class="card-light"><h3>3. Trigger manually</h3><p>Expose false triggers and hidden environment or execution assumptions.</p></div>
+        <div class="card-light"><h3>4. Build a prompt set</h3><p>Use 10–20 positive and negative cases. Add real failures as regressions.</p></div>
+        <div class="card-light"><h3>5. Capture evidence</h3><p>Save structured execution traces and output artifacts for every case.</p></div>
+        <div class="card-light"><h3>6. Grade and iterate</h3><p>Run deterministic checks first, then apply a rubric to qualitative requirements.</p></div>
       </div>
-      <aside class="notes">A skill is not complete because its YAML parses. Behavioral forward-testing is the real validation.</aside>
+      <aside class="notes">Treat skill evaluation like a lightweight end-to-end test. With Codex, codex exec --json provides structured events for deterministic checks; a schema-constrained rubric can cover qualitative requirements. Compare scores across versions and turn each observed failure into a regression case. Source: https://developers.openai.com/blog/eval-skills</aside>
     </section>
 
     <section class="slide slide-gradient" data-section="Custom SDLC agent">
@@ -823,8 +779,7 @@ Write that into evidence.”</div>
     'AI-Native SDLC','What participants will build','Two-day delivery agenda','Workshop ground rules',
     'Choose the right mechanism','The agent system, layer by layer','Six distinctions that prevent drift','Exercise: mechanism sorter',
     'Same intent, different surfaces','Directory translation card','A portable repository pattern',
-    'Package decisions, not documentation','Anatomy of a high-value skill','Parallel lab: three stacks, one contract',
-    'Team A — gcc-dev decision points','Team B — mscpp-dev decision points','Team C — go-dev decision points','Test the skill where it can fail',
+    'Package decisions, not documentation','Anatomy of a high-value skill','Parallel lab: three stacks, one contract','A repeatable evaluation loop for skills',
     'Install one reviewed skill at user scope','Prove selection and non-selection',
     'Observe behavior before adding governance','Demo 01: minimal prompt vs specification contract','Contract quality is visible in the plan',
     'Demo 02: skills, hooks, project instructions','Demo 03: RTK and terminal evidence','Demo 04: Caveman and terse diagnosis','Demo 05: prompt injection inside repository data',
