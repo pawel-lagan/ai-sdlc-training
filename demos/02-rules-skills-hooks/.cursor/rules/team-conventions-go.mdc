@@ -1,0 +1,14 @@
+---
+description: Go implementation and test conventions for the retry demo.
+globs: "go/**"
+alwaysApply: false
+---
+
+- All code belongs to the single `retry` package; do not create subpackages, `internal/` directories, or helper modules.
+- Preserve the exported API exactly: `func Decide(code string, attempt int) (Decision, error)` and the `Decision` struct fields `Retry bool` and `DelayMs int`; do not rename, reorder, or add exported identifiers unless `task.md` changes them.
+- Report errors by returning `error` (`errors.New` / `fmt.Errorf`); never `panic` in library code, and check every returned `error` at the call site.
+- Keep `Decide` pure: no I/O, no `time.Sleep`, no `net` calls, no package-level mutable state; return the `Decision` struct by value.
+- Code must be `gofmt`-clean: tab indentation, no unused imports or parameters.
+- Tests live next to the code in `retry_test.go` (`package retry`), written table-driven: a `[]struct` of cases with a behavior-focused `name`, executed via `t.Run(tt.name, ...)`, compared with `got != tt.want` and reported via `t.Fatalf("Decide() = %#v, want %#v", got, tt.want)`; invalid-input cases assert a non-nil `err`.
+- Run the narrowest test first with `go test ./retry -run <TestName>`, then the full `go test ./...` plus `go vet ./...`.
+- Prefer explicit `if`/`switch` cases over a new helper function or abstraction until at least three call sites need it.

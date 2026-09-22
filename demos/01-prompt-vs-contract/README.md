@@ -2,7 +2,8 @@
 
 Goal: compare a minimal planning prompt with a task contract that exposes assumptions before code changes.
 
-Both variants contain the same deployment-gate baseline and behavior. Run the baseline tests, then start two fresh agent conversations. In Run A use:
+Both variants contain the same deployment-gate baseline and behavior. Run the baseline tests, then start two fresh agent conversations.
+In Run A use plan mode and prompt:
 
 ```text
 Add change-risk handling to the deployment gate. Plan first; do not edit files.

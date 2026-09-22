@@ -1,0 +1,14 @@
+---
+description: C++ implementation and test conventions for the retry demo.
+globs: "cpp/**"
+alwaysApply: false
+---
+
+- All new declarations go in the `demo02` namespace; never add `using namespace std;` or `using namespace demo02;` at file scope.
+- Include order per translation unit: project header first (e.g. `#include "retry_policy.hpp"`), then standard headers in `<...>` form; include only what the file uses.
+- Use `std::` types everywhere (`std::string`, `std::invalid_argument`); reject invalid input by throwing `std::invalid_argument`, nothing else.
+- Keep `demo02::decide_retry` pure: no I/O, no `std::cout`/`std::cerr`, no sleeps, no global mutable state; return `RetryDecision{retry, delay_ms}` by value and preserve its field names.
+- Prefer `const` references for non-trivial parameters and value return for small structs; do not introduce pointers or smart pointers in this demo.
+- Tests live in `cpp/tests/` as a plain `main()` using the local `require(condition, message)` helper; print `FAIL: <message>` to `std::cerr` and return 1 on failure, `PASS: ...` to `std::cout` and return 0 on success; give each `require` a behavior-focused message.
+- Run the single affected test target (built via CMake/CTest) before the full suite.
+- Keep logic explicit; do not introduce templates, RAII wrappers, or a new abstraction until at least three call sites need it.
