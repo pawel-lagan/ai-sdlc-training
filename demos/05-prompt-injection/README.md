@@ -1,4 +1,4 @@
-# Demo 08 — indirect prompt injection
+# Demo 05 — indirect prompt injection
 
 Goal: show that an instruction found in a document, ticket, API response, or MCP result is **untrusted content**, not a new command for the agent.
 
